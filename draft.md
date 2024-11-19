@@ -1,29 +1,35 @@
-https://pgexercises.com/gettingstarted.html
+## Learning postgres 
 
+[PG Exercise](https://pgexercises.com/gettingstarted.html)
+
+
+```bash
 docker volume create postgres-data
+```
 
+### use -v to bind host directory to the docker image directory host:docker 
 
-# use -v to bind host directory to the docker image directory host:docker 
+```bash
 docker run --rm -v postgres-data:/data -v $(pwd):/host busybox cp /host/clubdata.sql /data/
+```
 
+### bind the volume to the scripts folder in the container 
 
-#bind the volume to the scripts folder in the container 
+```bash
 docker run -it --rm --network postgres-network -v postgres-data:/scripts postgres psql -h some-postgres -U postgres -f /scripts/clubdata.sql
 
 
 docker run --rm -d -p5432:5432 --name some-postgres --network postgres-network -e POSTGRES_PASSWORD=mysecretpassword -e PGDATA=/var/lib/postgresql/data/pgdata  -v C:\Users\nikhilsharma03\Downloads\docker-volumes\postgres-volume\:/var/lib/postgresql/data postgres
+```
 
 
-Now learning 
+For window use complete path in window format 
 
-for window use complete path in window format 
+### 2 ways to bind mount
 
-2 ways to bind mount
-
-1. host mount giving the whole path on local machine
-2. using volumes create the directory path inside docker handled by docker, can be attached to multiple containers
+- host mount giving the whole path on local machine
+- using volumes create the directory path inside docker handled by docker, can be attached to multiple containers
 
 
-docker run -it --rm --network postgres-network postgres psql -h some-postgres -U postgres -f /var/lib/postgresql/data/pgdata/scripts/insert.sql
 
 
