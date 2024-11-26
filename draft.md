@@ -17,12 +17,12 @@ docker run --rm -v postgres-data:/data -v $(pwd):/host busybox cp /host/clubdata
 
 ```bash
 docker run -it --rm --network postgres-network -v postgres-data:/scripts postgres psql -h some-postgres -U postgres -f /scripts/clubdata.sql
-
+```
 
 ### preventing data from container restarts , mapping pgdata directory to host machine folder 
 
 ```bash
-docker run --rm -d -p5432:5432 --name some-postgres --network postgres-network -e POSTGRES_PASSWORD=mysecretpassword -e PGDATA=/var/lib/postgresql/data/pgdata  -v C:\Users\nikhilsharma03\Downloads\docker-volumes\postgres-volume\:/var/lib/postgresql/data postgres
+docker run --rm -d -p5432:5432 --name some-postgres --network postgres-network -e POSTGRES_PASSWORD=mysecret -e PGDATA=/var/lib/postgresql/data/pgdata  -v C:\\Users\\nikhilsharma03\\Downloads\\docker-volumes\\postgres-volume:/var/lib/postgresql/data postgres
 ```
 
 
