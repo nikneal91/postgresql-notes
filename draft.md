@@ -2,6 +2,32 @@
 
 [PG Exercise](https://pgexercises.com/gettingstarted.html)
 
+# Local Setup
+
+## Create docker network
+
+```bash
+docker network create postgres-network
+```
+
+## Run postgres server with network
+
+```bash
+docker run --rm -d -p5432:5432 --name some-postgres --network postgres-network -e POSTGRES_PASSWORD=mysecret postgres
+```
+
+## Create alias for psql client
+
+```bash
+alias psql=alias psql='docker run -e PGPASSWORD="mysecret" -it --rm --network postgres-network  postgres psql -h some-postgres -U postgres -c'
+```
+
+## now just run any command like below
+
+```bash
+psql 'select * from [cities]'
+```
+
 
 ```bash
 docker volume create postgres-data
